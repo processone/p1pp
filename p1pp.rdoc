@@ -1,0 +1,5 @@
+= p1pp
+
+Generate this with
+    p1pp rdoc
+After you have described your command line interface
