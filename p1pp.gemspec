@@ -20,4 +20,5 @@ bin/p1pp
   s.executables << 'p1pp'
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
+  s.add_dependency('blather')
 end
