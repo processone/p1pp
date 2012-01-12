@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    p1pp (0.0.1)
+    P1PP (0.0.1)
       blather
+      gli
 
 GEM
   remote: http://rubygems.org/
@@ -15,6 +16,7 @@ GEM
       niceogiri (>= 0.1.0)
       nokogiri (~> 1.4.0)
     eventmachine (0.12.10)
+    gli (1.4.0)
     json (1.6.4)
     multi_json (1.0.4)
     niceogiri (0.1.1)
@@ -28,6 +30,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  p1pp!
+  P1PP!
   rake
   rdoc

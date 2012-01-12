@@ -6,7 +6,7 @@ require 'rake/rdoctask'
 Rake::RDocTask.new do |rd|
   rd.main = "README.rdoc"
   rd.rdoc_files.include("README.rdoc","lib/**/*.rb","bin/**/*")
-  rd.title = 'Your application title'
+  rd.title = 'ProcessOne Push Platform'
 end
 
 spec = eval(File.read('p1pp.gemspec'))

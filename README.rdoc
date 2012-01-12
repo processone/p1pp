@@ -1,6 +1,5 @@
 = p1pp
 
-Describe your project here
+This is a command-line interface tool to ProcessOne Push Platform
 
 :include:p1pp.rdoc
-
