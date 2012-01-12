@@ -59,6 +59,7 @@ module P1Publisher
   def self.check_credentials(username, password)
     raise "JID is mandatory to connect on your account" if username.blank?
     raise "Password is mandatory to connect on your account" if password.blank?
+    puts "User: #{username}"
   end
 
   def self.check_node(node)
