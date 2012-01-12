@@ -16,7 +16,7 @@ module P1Publisher
     setup username, password
 
     when_ready {
-      puts "Connected: #{client.jid.inspect}"
+      # puts "Connected: #{client.jid.inspect}"
       pubsub = Blather::DSL::PubSub.new(client, self.pubsub_host)
       pubsub.create(node) { |stanza|
         if stanza.error?
@@ -29,16 +29,32 @@ module P1Publisher
       }
     }
 
-    disconnected {
-      puts "Client has been disconnected"
-    }
-
     EM.run {
         client.run
     }
   end
 
-  @private
+  def self.list_nodes(username, password)
+    self.check_credentials(username, password)
+    setup username, password
+
+    when_ready {
+      pubsub = Blather::DSL::PubSub.new(client, self.pubsub_host)
+      pubsub.affiliations { |nodes|
+        puts "You do not own any node" if nodes.empty?
+        nodes.each { |node|
+          puts "#{node}"
+        }
+        client.close
+      }
+    }
+
+    EM.run {
+      client.run
+    }
+  end
+
+    @private
 
   def self.check_credentials(username, password)
     raise "JID is mandatory to connect on your account" if username.blank?

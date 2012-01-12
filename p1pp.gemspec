@@ -9,7 +9,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = 'http://www.process-one.net/'
   s.platform = Gem::Platform::RUBY
   s.summary = 'This is a command-line interface tool to ProcessOne Push Platform'
-# Add your other files here if you make them
+  # Add your other files here if you make them
   s.files = %w(bin/p1.rb)
   s.require_paths << 'lib'
   s.has_rdoc = true

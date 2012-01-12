@@ -24,14 +24,6 @@ program_desc 'This is a command-line interface tool to ProcessOne Push Platform'
 
 version P1PP::VERSION
 
-desc 'Describe some switch here'
-switch [:s, :switch]
-
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f, :flagname]
-
 desc 'Your XMPP ID (JID)'
 arg_name 'me@talkr.im'
 flag [:j, :jid]
@@ -47,18 +39,18 @@ arg_name 'NodeName'
 command :create do |c|
   c.action do |global_options, options, args|
 
-    puts "Global:"
-    puts "-j - #{global_options[:j]}"
-    puts "-p - #{global_options[:p]}"
-    puts "-z - #{global_options[:z]}"
-    puts "args - #{args.join(',')}"
-
     P1PP::exec {
       P1Publisher::create_node(global_options[:j], global_options[:p], args[0])
     }
+  end
+end
 
-    # If you have any errors, just raise them
-    # raise "that command made no sense"
+desc 'List your nodes'
+command :list do |c|
+  c.action do |global_options, options, args|
+    P1PP::exec {
+      P1Publisher::list_nodes(global_options[:j], global_options[:p])
+    }
   end
 end
 
