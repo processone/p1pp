@@ -24,15 +24,17 @@ program_desc 'This is a command-line interface tool to ProcessOne Push Platform'
 
 version P1PP::VERSION
 
+config_file '.p1pp.conf'
+
 desc 'Your XMPP ID (JID)'
 arg_name 'me@talkr.im'
-flag [:j, :jid]
+flag [:jid, :j]
 
 desc 'Your XMPP account password'
 arg_name 'password'
-flag [:p, :password]
+flag [:password, :p]
 
-# Options [host] [port]
+# TODO: Options [host] [port]
 
 desc 'Create a pubsub node on P1PP'
 arg_name 'NodeName'
@@ -40,7 +42,7 @@ command :create do |c|
   c.action do |global_options, options, args|
 
     P1PP::exec {
-      P1Publisher::create_node(global_options[:j], global_options[:p], args[0])
+      P1Publisher::create_node(global_options[:jid], global_options[:password], args[0])
     }
   end
 end
@@ -49,7 +51,7 @@ desc 'List your nodes'
 command :list do |c|
   c.action do |global_options, options, args|
     P1PP::exec {
-      P1Publisher::list_nodes(global_options[:j], global_options[:p])
+      P1Publisher::list_nodes(global_options[:jid], global_options[:password])
     }
   end
 end

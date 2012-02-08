@@ -31,5 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   P1PP!
+  blather
+  gli
   rake
   rdoc

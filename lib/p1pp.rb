@@ -1,4 +1,4 @@
-require 'p1pp/p1_error'
+require 'lib/p1pp/p1_error'
 
 module P1PP
   VERSION = '0.0.1'

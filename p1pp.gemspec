@@ -3,14 +3,14 @@ require File.join([File.dirname(__FILE__),'lib','p1pp.rb'])
 
 spec = Gem::Specification.new do |s| 
   s.name = 'P1PP'
-  s.version = P1pp::VERSION
+  s.version = P1PP::VERSION
   s.author = 'Mickaël Rémond'
   s.email = 'mremond@process-one.net'
   s.homepage = 'http://www.process-one.net/'
   s.platform = Gem::Platform::RUBY
   s.summary = 'This is a command-line interface tool to ProcessOne Push Platform'
   # Add your other files here if you make them
-  s.files = %w(bin/p1.rb)
+  s.files = %w(bin/p1.rb lib/p1pp.rb lib/p1pp/p1_error.rb lib/p1pp/p1_publisher.rb)
   s.require_paths << 'lib'
   s.has_rdoc = true
   s.extra_rdoc_files = %w(README.rdoc p1pp.rdoc)

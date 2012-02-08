@@ -1,0 +1,11 @@
+# Put this in ~/.p1pp.conf
+--- 
+:jid: me@talkr.im
+:password: mypass 
+
+commands: 
+  :create: {}
+  :list: {}
+  :listen: {}
+  :subscribe: {}
+  :publish: {}
