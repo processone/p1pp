@@ -21,5 +21,11 @@ commands:
 You can then create a first pubsub node with the following command:
 
 $ p1.rb create test1
-User: test@gmail.com
+As user: test@gmail.com
 Created node test1
+
+$ p1.rb list
+As user: test@gmail.com
+You own the following nodes:
+ mremond@process-one.net/test1
+ mremond@process-one.net/test2
