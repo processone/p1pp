@@ -30,7 +30,7 @@ module P1Publisher
     }
 
     EM.run {
-        client.run
+      client.run
     }
   end
 
@@ -40,11 +40,16 @@ module P1Publisher
 
     when_ready {
       pubsub = Blather::DSL::PubSub.new(client, self.pubsub_host)
-      pubsub.affiliations { |nodes|
-        puts "You do not own any node" if nodes.empty?
-        nodes.each { |node|
-          puts "#{node}"
-        }
+      pubsub.affiliations { |affiliation|
+        owner = affiliation[:owner]
+        if owner.empty?
+          puts "You do not own any node"
+        else
+          puts "You own the following nodes:"
+          owner.each { |node|
+            puts " #{node}"
+          }
+        end
         client.close
       }
     }
@@ -54,12 +59,12 @@ module P1Publisher
     }
   end
 
-    @private
+  @private
 
   def self.check_credentials(username, password)
     raise "JID is mandatory to connect on your account" if username.blank?
     raise "Password is mandatory to connect on your account" if password.blank?
-    puts "User: #{username}"
+    puts "As user: #{username}"
   end
 
   def self.check_node(node)
