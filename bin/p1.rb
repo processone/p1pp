@@ -16,6 +16,7 @@ require 'rubygems'
 require 'gli'
 require 'p1pp'
 require 'p1pp/p1_publisher'
+require 'p1pp/p1_subscriber'
 require 'p1pp/p1_error'
 
 include GLI
@@ -61,6 +62,7 @@ command :list do |c|
 end
 
 desc 'Delete a pubsub node'
+arg_name 'NodeName'
 command :delete do |c|
   c.action do |global_options, options, args|
 
@@ -70,16 +72,26 @@ command :delete do |c|
   end
 end
 
-=begin
 desc 'Subscribe to a node'
+arg_name 'NodeName'
 command :subscribe do |c|
   c.action do |global_options, options, args|
     P1PP::exec {
-      P1Subscriber::subscribe_nodes(global_options[:jid], global_options[:password])
+      P1Subscriber::subscribe(global_options[:jid], global_options[:password], args[0])
     }
   end
 end
-=end
+
+desc 'Unsubscribe from a node'
+arg_name 'NodeName'
+command :unsubscribe do |c|
+  c.action do |global_options, options, args|
+    P1PP::exec {
+      P1Subscriber::unsubscribe(global_options[:jid], global_options[:password], args[0])
+    }
+  end
+end
+
 
 desc 'Describe publish here'
 arg_name 'Describe arguments to publish here'

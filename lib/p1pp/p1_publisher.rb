@@ -19,8 +19,8 @@ module P1Publisher
           puts "Pubsub error when creating node #{node}: #{error.type} (#{error.name})"
         else
           puts "Created node: #{node}"
-          client.close
         end
+        client.close
       }
     }
 
