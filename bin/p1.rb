@@ -92,6 +92,14 @@ command :unsubscribe do |c|
   end
 end
 
+desc 'Connect as a subscriber and send received pubsub message to standard output'
+command :listen do |c|
+  c.action do |global_options, options, args|
+    P1PP::exec {
+      P1Subscriber::listen(global_options[:jid], global_options[:password])
+    }
+  end
+end
 
 desc 'Describe publish here'
 arg_name 'Describe arguments to publish here'
@@ -102,13 +110,6 @@ command :publish do |c|
   c.desc 'Describe a flag to publish'
   c.default_value 'default'
   c.flag :f
-  c.action do |global_options, options, args|
-  end
-end
-
-desc 'Describe listen here'
-arg_name 'Describe arguments to listen here'
-command :listen do |c|
   c.action do |global_options, options, args|
   end
 end
