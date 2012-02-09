@@ -89,4 +89,35 @@ module P1Publisher
       client.run
     }
   end
+
+  def self.publish(username, password, node)
+    P1PP::check_credentials(username, password)
+    P1PP::check_node(node)
+
+    setup username, password
+
+    when_ready {
+      pubsub = Blather::DSL::PubSub.new(client, P1PP::pubsub_host)
+
+      i = 0
+      $stdin.each { |line|
+        i = i +1
+        puts "#{line}"
+        payload = "<p1pp-raw xmlns='p1pp'>#{line}</p1pp-raw>"
+        pubsub.publish(node, payload) { |stanza|
+          if stanza.error?
+            error = Blather::StanzaError.import(stanza)
+            puts "Pubsub error when publishing on #{node}: #{error.type} (#{error.name})"
+            puts "Content:\n#{line}"
+          end
+          i = i - 1
+          client.close if $stdin.eof && i == 0
+        }
+      }
+    }
+
+    EM.run {
+      client.run
+    }
+  end
 end

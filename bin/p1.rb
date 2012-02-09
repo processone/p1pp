@@ -101,16 +101,13 @@ command :listen do |c|
   end
 end
 
-desc 'Describe publish here'
-arg_name 'Describe arguments to publish here'
+desc 'Publish content coming from standard input'
+arg_name 'NodeName'
 command :publish do |c|
-  c.desc 'Describe a switch to publish'
-  c.switch :s
-
-  c.desc 'Describe a flag to publish'
-  c.default_value 'default'
-  c.flag :f
   c.action do |global_options, options, args|
+    P1PP::exec {
+      P1Publisher::publish(global_options[:jid], global_options[:password], args[0])
+    }
   end
 end
 
