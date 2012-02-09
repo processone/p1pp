@@ -103,7 +103,8 @@ module P1Publisher
       $stdin.each { |line|
         i = i +1
         puts "#{line}"
-        payload = "<p1pp-raw xmlns='p1pp'>#{line}</p1pp-raw>"
+        payload = Blather::XMPPNode.new("p1pp")
+        payload.content = line
         pubsub.publish(node, payload) { |stanza|
           if stanza.error?
             error = Blather::StanzaError.import(stanza)
