@@ -19,6 +19,7 @@ module P1PP
     raise "JID is mandatory to connect on your account" if username.blank?
     raise "Password is mandatory to connect on your account" if password.blank?
     puts "As user: #{username}"
+    puts ""
   end
 
   def self.check_node(node)

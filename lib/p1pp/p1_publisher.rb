@@ -37,7 +37,7 @@ module P1Publisher
       pubsub = Blather::DSL::PubSub.new(client, P1PP::pubsub_host)
       pubsub.affiliations { |affiliation|
         owner = affiliation[:owner]
-        if owner.empty?
+        if owner.nil? || owner.empty?
           puts "You do not own any node"
         else
           puts "You own the following nodes:"
@@ -45,7 +45,19 @@ module P1Publisher
             puts " #{node}"
           }
         end
-        client.close
+        puts ""
+        pubsub.subscriptions { |subscriptions|
+          if subscriptions.nil? || subscriptions.empty?
+            puts "You are not subscribed to any node"
+          else
+            puts "You are subscribed to the following nodes:"
+            subscribed = subscriptions[:subscribed]
+            subscribed.each { |item|
+              puts " #{item[:node]} (subid: #{item[:subid]})"
+            }
+          end
+          client.close
+        }
       }
     }
 
