@@ -22,10 +22,18 @@ You can then create a first pubsub node with the following command:
 
 $ p1.rb create test1
 As user: test@gmail.com
-Created node test1
+Created node: test1
 
 $ p1.rb list
 As user: test@gmail.com
 You own the following nodes:
  mremond@process-one.net/test1
  mremond@process-one.net/test2
+
+$ p1.rb delete test1
+As user: test@gmail.com
+Deleted node: test1
+
+
+See XMPP protocol documentation at:
+https://support.process-one.net/doc/display/PROJECTS/P1PP+documentation

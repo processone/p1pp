@@ -34,9 +34,13 @@ desc 'Your XMPP account password'
 arg_name 'password'
 flag [:password, :p]
 
+desc 'XMPP debug mode'
+arg_name 'debug'
+switch [:debug]
+
 # TODO: Options [host] [port]
 
-desc 'Create a pubsub node on P1PP'
+desc 'Create a pubsub node'
 arg_name 'NodeName'
 command :create do |c|
   c.action do |global_options, options, args|
@@ -47,7 +51,7 @@ command :create do |c|
   end
 end
 
-desc 'List your nodes'
+desc 'List your pubsub nodes'
 command :list do |c|
   c.action do |global_options, options, args|
     P1PP::exec {
@@ -55,6 +59,27 @@ command :list do |c|
     }
   end
 end
+
+desc 'Delete a pubsub node'
+command :delete do |c|
+  c.action do |global_options, options, args|
+
+    P1PP::exec {
+      P1Publisher::delete_node(global_options[:jid], global_options[:password], args[0])
+    }
+  end
+end
+
+=begin
+desc 'Subscribe to a node'
+command :subscribe do |c|
+  c.action do |global_options, options, args|
+    P1PP::exec {
+      P1Subscriber::subscribe_nodes(global_options[:jid], global_options[:password])
+    }
+  end
+end
+=end
 
 desc 'Describe publish here'
 arg_name 'Describe arguments to publish here'
@@ -76,19 +101,9 @@ command :listen do |c|
   end
 end
 
-desc 'Describe subscribe here'
-arg_name 'Describe arguments to subscribe here'
-command :subscribe do |c|
-  c.action do |global_options, options, args|
-  end
-end
-
 pre do |global, command, options, args|
-  # Pre logic here
-  # Return true to proceed; false to abort and not call the
-  # chosen command
-  # Use skips_pre before a command to skip this block
-  # on that command only
+  debug = global[:debug]
+  Blather.logger.level = Logger::DEBUG if debug
   true
 end
 
