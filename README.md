@@ -1,4 +1,4 @@
-This is a command-line interface tool to ProcessOne Push Platform.
+This is a command-line interface tool to ProcessOne Push Platform (P1PP).
 
 Example usage:
 
@@ -12,9 +12,11 @@ For example, put this in ~/.p1pp.conf
 
 commands:
   :create: {}
+  :delete: {}
   :list: {}
   :listen: {}
   :subscribe: {}
+  :unsubscribe: {}
   :publish: {}
 ```
 
