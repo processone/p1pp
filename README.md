@@ -38,4 +38,4 @@ Deleted node: test1
 
 
 See XMPP protocol documentation at:
-https://support.process-one.net/doc/display/PROJECTS/P1PP+documentation
+https://support.process-one.net/doc/display/XMPP/P1PP+documentation
