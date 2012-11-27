@@ -19,7 +19,7 @@ require 'p1pp/p1_publisher'
 require 'p1pp/p1_subscriber'
 require 'p1pp/p1_error'
 
-include GLI
+include GLI::App
 
 program_desc 'This is a command-line interface tool to ProcessOne Push Platform'
 
@@ -129,4 +129,4 @@ on_error do |exception|
   true
 end
 
-exit GLI.run(ARGV)
+exit run(ARGV)
